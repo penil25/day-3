@@ -1,0 +1,46 @@
+from forex_python.converter import CurrencyRates
+
+def currency_converter(amount, from_currency, to_currency):
+    c = CurrencyRates()
+
+    try:
+        exchange_rate = c.get_rate(from_currency, to_currency)
+        converted_amount = amount * exchange_rate
+
+        return f"{amount} {from_currency} is equal to {converted_amount:.2f} {to_currency}"
+    
+    except Exception as e:
+        return f"Error: {e}"
+
+ # Currency names with country names
+    currency_names = {
+        'USD': 'United States Dollar', 
+        'EUR': 'Euro', 
+        'GBP': 'British Pound Sterling', 
+        'JPY': 'Japanese Yen', 
+        'AUD': 'Australian Dollar',
+        'CAD': 'Canadian Dollar', 
+        'CNY': 'Chinese Yuan', 
+        'INR': 'Indian Rupee', 
+        'BRL': 'Brazilian Real', 
+        'MXN': 'Mexican Peso',
+        'ZAR': 'South African Rand', 
+        'RUB': 'Russian Ruble', 
+        'TRY': 'Turkish Lira', 
+        'KRW': 'South Korean Won', 
+        'AED': 'United Arab Emirates Dirham',
+        'SGD': 'Singapore Dollar', 
+        'NZD': 'New Zealand Dollar', 
+        'SEK': 'Swedish Krona', 
+        'NOK': 'Norwegian Krone', 
+        'CHF': 'Swiss Franc', 
+        'HKD': 'Hong Kong Dollar',
+    }
+
+# Example usage:
+amount_to_convert = float(input("Enter the amount to convert: "))
+from_currency_code = input("Enter the source currency code (e.g., USD): ").upper()
+to_currency_code = input("Enter the target currency code (e.g., EUR): ").upper()
+
+result = currency_converter(amount_to_convert, from_currency_code, to_currency_code)
+print(result)
